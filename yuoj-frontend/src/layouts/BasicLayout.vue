@@ -1,16 +1,15 @@
 <template>
   <div id="BasicLayout">
-    <a-layout style="height: 400px">
+    <a-layout style="min-height: 100px">
       <a-layout-header class="header">
         <GlobalHeader />
       </a-layout-header>
       <a-layout-content class="content">
         <router-view />
       </a-layout-content>
-      <!--
       <a-layout-footer class="footer">
-        <a href="https://www.baidu.com/">查询信息</a>
-      </a-layout-footer> -->
+        <a href="https://www.baidu.com/" target="_blank">查询信息</a>
+      </a-layout-footer>
     </a-layout>
   </div>
 </template>
@@ -37,7 +36,7 @@ import GlobalHeader from "@/components/GlobalHeader.vue";
 #BasicLayout .footer {
   background: #efefef;
   padding: 16px;
-  position: absolute;
+  position: sticky;
   buttom: 0;
   left: 0;
   right: 0;

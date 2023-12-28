@@ -12,6 +12,18 @@
 import BasicLayout from "@/layouts/BasicLayout";
 import { useRouter } from "vue-router";
 import { useStore } from "vuex";
+import { onMounted } from "vue";
+
+/**
+ * 全局初始化函数,有全局单次调用的代码,可以写到这里
+ */
+const doInit = () => {
+  console.log("doInit");
+};
+
+onMounted(() => {
+  doInit();
+});
 
 const router = useRouter();
 const store = useStore();
