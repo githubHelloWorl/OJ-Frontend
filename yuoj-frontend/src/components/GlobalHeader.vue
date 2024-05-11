@@ -7,11 +7,7 @@
         :selected-keys="selectedKeys"
         @menu-item-click="doMenuClick"
       >
-        <a-menu-item
-          key="0"
-          :style="{ padding: 0, marginRight: '38px' }"
-          disabled
-        >
+        <a-menu-item :style="{ padding: 0, marginRight: '38px' }" disabled>
           <div class="title-bar">
             <img class="logo" src="../assets/yu-oj.png" />
             <div class="title">鱼 JO</div>
@@ -24,7 +20,9 @@
     </a-col>
     <a-col flex="100px">
       <!-- 这里的信息 -->
-      <div>{{ store.state.user?.loginUser?.userName ?? "未登录" }}</div>
+      <div @click="handlerToLogin">
+        {{ store.state.user?.loginUser?.userName ?? "未登录" }}
+      </div>
     </a-col>
   </a-row>
 </template>
@@ -32,10 +30,9 @@
 <script setup lang="ts">
 import { routes } from "../router/routes";
 import { useRoute, useRouter } from "vue-router";
-import { ref, computed } from "vue";
+import { ref, computed, onMounted } from "vue";
 import { useStore } from "vuex";
 import checkAccess from "@/access/checkAccess";
-import ACCESS_ENUM from "@/access/accessEnum";
 
 // 路由使用
 const router = useRouter();
@@ -46,8 +43,9 @@ const router = useRouter();
 const store = useStore();
 // ----------------------------
 
-//const loginUser = store.state.user.loginUser;
-// console.log("loginUser.userName:" + loginUser.userName);
+import ACCESS_ENUM from "@/access/accessEnum";
+
+onMounted(() => {});
 
 // 展示在菜单的路由数组 (如果要监视它不断刷新,则可以使用computed属性)
 const visibleRoutes = computed(() => {
@@ -83,13 +81,19 @@ const doMenuClick = (key: string) => {
   });
 };
 
-// 验证 判断3秒后是否会修改user
-setTimeout(() => {
-  store.dispatch("user/getLoginUser", {
-    userName: "鱼皮",
-    userRole: ACCESS_ENUM.ADMIN,
+const handlerToLogin = () => {
+  router.replace({
+    path: "/user/login",
   });
-}, 3000);
+};
+
+// 验证 判断3秒后是否会修改user
+// setTimeout(() => {
+//   store.dispatch("user/getLoginUser", {
+//     userName: "鱼皮",
+//     userRole: ACCESS_ENUM.ADMIN,
+//   });
+// }, 3000);
 </script>
 
 <style scoped>
