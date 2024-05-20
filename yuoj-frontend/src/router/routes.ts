@@ -30,22 +30,25 @@ export const routes: Array<RouteRecordRaw> = [
     path: "/add/question",
     name: "创建题目",
     component: () => import("@/views/question/AddQuestionView.vue"),
-    // meta: {
-    //   access: ACCESS_ENUM.ADMIN,
-    // },
+    meta: {
+      access: ACCESS_ENUM.ADMIN,
+    },
   },
   {
     path: "/update/question",
     name: "更新题目",
     component: () => import("@/views/question/AddQuestionView.vue"),
-    // meta: {
-    //   access: ACCESS_ENUM.ADMIN,
-    // },
+    meta: {
+      access: ACCESS_ENUM.ADMIN,
+    },
   },
   {
     path: "/manage/question",
     name: "管理题目",
     component: () => import("@/views/question/ManageQuestionView.vue"),
+    meta: {
+      access: ACCESS_ENUM.ADMIN,
+    },
   },
   {
     path: "/",
@@ -62,6 +65,10 @@ export const routes: Array<RouteRecordRaw> = [
     name: "在线做题",
     component: () => import("@/views/question/ViewQuestionView.vue"),
     props: true,
+    meta: {
+      access: ACCESS_ENUM.USER,
+      hideInMenu: true,
+    }
   },
   // {
   //   path: "/hide",

@@ -1,11 +1,5 @@
 <template>
-    <Editor
-      :value="value"
-      :mode="mode"
-      :plugins="plugins"
-      @change="handleChange"
-    />
-<!--  <Editor :value="value" :plugins="plugins" />-->
+  <Viewer :value="value" :plugins="plugins"/>
 </template>
 
 <script setup lang="ts">
@@ -19,10 +13,9 @@ import { ref, withDefaults, defineProps } from "vue";
  */
 interface Props {
   value: string;
-  mode?: string;
-  handleChange: (v: string) => void;
 }
 
+//
 const plugins = [
   gfm(),
   highlight(),
@@ -34,9 +27,5 @@ const plugins = [
  */
 const props = withDefaults(defineProps<Props>(), {
   value: () => "",
-  mode: () => "split",
-  handleChange: (v: string) => {
-    console.log(v);
-  },
 });
 </script>
